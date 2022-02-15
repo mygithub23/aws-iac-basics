@@ -1,11 +1,11 @@
 # Deploying AWS resources with Terraform, from scratch!
 
 ## Introduction
-Something broke in the cloud, and you need to fix it quickly!  And it's 3 AM! :weary: .  The workstation you use day-to-day for cloud engineering is not available.  Everything has gone wrong, and everyone is looking at you to resolve the problem.  
+Something broke in the cloud, and you need to fix it quickly!  And it's 3 AM! :weary: .  The workstation you use day-to-day for cloud engineering is not available, everything is going wrong, and everyone is looking at you to resolve the problem.  
 
->  This lab is designed to be a "real world scenario".  Often in these situations, you are forced to deal with several other problems just so you can get back to resolving the original issue.  You must solve for getting the tools needed, getting credentials correct, resolving a problem with the template, and finally ensuring your work is stashed back to a repo.  Real issues are not easy!  Let's get some experience handling "the real".
+>  This lab is designed to be a "real-world scenario." Often in these situations, you are forced to deal with several other problems so that you can get back to resolving the original issue.  You must solve for getting the tools needed, getting credentials correct, fixing a problem with the resource you create via an update, and finally ensuring your work is stashed back to a repo.  Real issues are not easy!  Let's get some experience handling "the real."
 
-This lab will build your skill and confidence in addressing such issues promptly and efficiently.  You will learn how to quickly set up a working environment with tooling, deploy cloud resources using infrastructure as code, make an update, and then store our updated work using git.  To do this, we will:
+This lab will build your skill and confidence using IaC and addressing chaotic situations promptly and efficiently.  You will learn how to quickly set up a working environment with tooling, deploy cloud resources using infrastructure as code, make an update, and then store our updated work using git.   To do this, we will:
 1.  **Connect to AWS CloudShell:** To get a shell quickly, we will leverage AWS CloudShell.
 1.  **Install tools:** Install tools like Terraform and git into CloudShell.
 2.  **AWS CLI permissions:** Configure the AWS CLI with the appropriate key and secret key.
@@ -13,7 +13,7 @@ This lab will build your skill and confidence in addressing such issues promptly
 4.  **Update and deploy:** Update the template and deploy the update.
 5.  **Commit and clean up:** Commit back to GitHub and clean up.
 
-> It is no stretch of the imagination to complete the above steps in less than 10 minutes—a great, demonstratable skill for you as a builder :sunglasses:.
+> It is no stretch of the imagination to be able to complete all steps in this lab (with experience) in less than 10 minutes. :sunglasses:
 
 ## Lab Steps
 ### Start Lab
