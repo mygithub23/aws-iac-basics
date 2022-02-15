@@ -16,10 +16,12 @@ provider "aws" {
 
 resource "aws_instance" "app_server" {
   ami           = data.aws_ami.amazon_linux.id
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = "Finance_Front_End",
+    Cost_Center = "Finance",
+    Admin_Contact = "fin_admins@ourcompany.com"
   }
 }
 
