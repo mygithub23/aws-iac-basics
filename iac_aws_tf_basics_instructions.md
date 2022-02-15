@@ -112,3 +112,4 @@ When the table prints to the screen scroll through the values and you should see
 | #2    | Type yes to the prompt.    | Terraform terminates the instance.  This takes about a minute and will show the message `Destroy complete! Resources: 1 destroyed.` when completed.    |
 
 
+TO DO: HOW TO UPDATE CLOUDSHELL WITH THE GITHUB ACCESS KEYS
