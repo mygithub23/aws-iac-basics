@@ -6,22 +6,23 @@ Something broke in the cloud, and you need to fix it quickly!  And it's 3 AM! :w
 >  This lab is designed to be a "real-world scenario." Often in these situations, you are forced to deal with several other problems so that you can get back to resolving the original issue.  You must solve for getting the tools needed, getting credentials correct, fixing a problem with the resource you create via an update, and finally ensuring your work is stashed back to a repo.  Real issues are not easy!  Let's get some experience handling "the real."
 
 This lab will build your skill and confidence using IaC and addressing chaotic situations promptly and efficiently.  You will learn how to quickly set up a working environment with tooling, deploy cloud resources using infrastructure as code, make an update, and then store our updated work using git.   To do this, we will:
-1.  **Setup your workstation:** To get a shell quickly, we will leverage AWS CloudShell.  Then, install tools like Terraform and git into CloudShell.
+1.  **Start Lab:** Launch the lab environment and get login credentials.
+1.  **Setup your workstation:** To get a shell quickly, we will leverage AWS CloudShell.  Then we will install tools like Terraform and git into CloudShell.
 2.  **AWS CLI permissions:** Configure the AWS CLI with the appropriate key and secret key.
 3.  **Clone GitHub repo, deploy resources:** Pull an IaC template from GitHub and use it to deploy resources to AWS.
+3.  **Initialize, format, and validate the template:**
+3.  **Plan and apply the template:**
 4.  **Update and deploy:** Update the template and deploy the update.
 5.  **Commit and clean up:** Commit back to GitHub and clean up.
 
 > It is no stretch of the imagination to be able to complete all steps in this lab (with experience) in less than 10 minutes. :sunglasses:
 ----
 ----
-## Lab Steps
-
-### Start Lab
+### 1. Start Lab
 ***Instructions about starting the lab on the platform*
 *Instructions about copying down the access key & secret access key***
 
-### #1. Setup your workstation
+### 2. Setup your workstation
 | Step     | Instructions | Result | 
 | -------- | -------- | -------- | 
 | #1       | Log into the AWS Console using the provided username & password | Log into the console| 
@@ -39,7 +40,7 @@ This lab will build your skill and confidence using IaC and addressing chaotic s
 > ***Check In:***  So far, we have solved the problem of getting a working environment and loading the tools to get the job done.  Now we need to get  
 ---
 ---
-### #2. AWS CLI permissions
+### 3. AWS CLI permissions
 We now need to create an access key/secret access key combination for ourselves.  This is needed in order to configure the AWS CLI.  
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
@@ -53,34 +54,34 @@ We now need to create an access key/secret access key combination for ourselves.
 ---
 ---
 
-### #3. Clone GitHub repo, deploy resources
+### 4. Clone GitHub repo, deploy resources
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | #1    | In a browser naviagate to `https://OUR PUBLIC GITHUB FOR THIS LAB` | The GitHub repo for this lab is displayed.|
 | #2    | Clone the repo by running the following in CloudShell: `git clone https://SOMETHINGorOther' | The repo is copied into a new folder in your CloudShell directory. |
 | #3    | In CloudShell, run: <ul><li>`cd [THE DIR NAME]`</li><li>`cat main.tf`</li></ul> | The template is written to the screen. |
-    
-> Check In: So we've got the files we need, let's examine the template to see what it does.
-### Reading the template file
-In the output of the file main.tf noticd that:
-- The `required_providers` is set to 'hashicorp/aws'.  This will pull in what we need to deploy resources to the AWS Cloud infrastructure.
-    - The `required_version` says that we want to use only provider versions greater than 0.14.9.  This can be a significant consideration should Hashicorp introduce a change that makes, say, version 0.14 different from a future version that introduces something "breaking changes."  In this case, we would set the value to a specific value such as `=0.14.9`, so we only use that version.
-- In the `provider "aws"` the profile is default (the default profile in your ~/.aws/config).  We also set the target region to US, Ohio (us-east-2).
 
-*Now things gets interesting* :thinking:
+> ### Reading the template file
+> In the output of the file main.tf noticd that:
+> - The `required_providers` is set to 'hashicorp/aws'.  This will pull in what we need to deploy resources to the AWS Cloud infrastructure.
+>     - The `required_version` says that we want to use only provider versions greater than 0.14.9.  This can be a significant consideration should Hashicorp introduce a change that makes, say, version 0.14 different from a future version that introduces something "breaking changes."  In this case, we would set the value to a specific value such as `=0.14.9`, so we only use that version.
+> - In the `provider "aws"` the profile is default (the default profile in your ~/.aws/config).  We also set the target region to US, Ohio (us-east-2).
+>
+> *Now things gets interesting* :thinking:
+>
+> - The `resource` section defines an EC2 instance running on a t3.micro instance with three tags.  Look at the Amazon Machine Image (AMI) value: `data.aws_ami.amazon_linux.id`.  That tells Terraform to look for a section named `aws_ami` in the file.  That section will query the AWS infrastructure to get the name of the latest Amazon Linux AMI.  This section guarantees that we always get the latest version of the Amazon Linux AMI.
+>
+> Now that we know what is going to happen, let's move on.
+>
 
-- The `resource` section defines an EC2 instance running on a t3.micro instance with three tags.  Look at the Amazon Machine Image (AMI) value: `data.aws_ami.amazon_linux.id`.  That tells Terraform to look for a section named `aws_ami` in the file.  That section will query the AWS infrastructure to get the name of the latest Amazon Linux AMI.  This section guarantees that we always get the latest version of the Amazon Linux AMI.
-
-Now that we know what is going to happen, let's move on.
-
-### Initialize, format, and validate the template
+### 5. Initialize, format, and validate the template
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | #1    | Run the command `terraform init` to initialize the directory with the needed providers.    | A message containing `Terraform has been successfully initialized!` will be printed to the screen. |
 | #2    | Run the command `terraform fmt` to ensure the terraform template file is well formatted.     | The file name `main.tf` is written to the screen if no errors are found. |
 | #3    | Run the command `terraform validate`    | The message `Success! The configuration is valid.` is written to the screen. |
 
-### Plan and Apply the template
+### 6. Plan and Apply the template
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | #1    | Run the command `terraform plan`    | A large amount of data will be written to the screen.  Verify that a value is shown for the ami that will be created.  At the end of the output you should see the following: `Plan: 1 to add, 0 to change, 0 to destroy.`|
@@ -102,7 +103,7 @@ Awesome!  You've deployed your EC2 instance to the cloud.
 ---
 ---
 
-### Update and deploy
+### 7. Update and deploy
 > And another problem?!?!  After you deploy the server the Security Department says you must update the Name tag to Finance_Mobile_Front_End.  Ugh!
 
 Now we are going to update the instance by changing the `Name` tag to `Finance_Mobile_Front_End`.  We will using vim to make the change.  Don't worry if you've never used vim before...I'll walk you through it. :wink:
@@ -123,7 +124,7 @@ Now let's verify the update.  Run the following command:
 
 When the table prints to the screen scroll through the values and you should see a row in the Key column named `Name` with the value (the last column) of `Finance_Mobile_Front_End`.
 
-### Commit and clean up
+### 8. Commit and clean up
 You've successfully deployed and EC2 instance, make a change, and now that everyone is happy we need to stow our updates back to GitHub and clean everything up.  
 
 | Step    | Instructions    | Result|
