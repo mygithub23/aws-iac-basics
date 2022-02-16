@@ -37,7 +37,8 @@ This lab will build your skill and confidence using IaC and addressing chaotic s
 
 
 > ***Check In:***  So far, we have solved the problem of getting a working environment and loading the tools to get the job done.  Now we need to get  
-   
+---
+---
 ### #2. AWS CLI permissions
 We now need to create an access key/secret access key combination for ourselves.  This is needed in order to configure the AWS CLI.  
 | Step    | Instructions    | Result|
@@ -48,7 +49,9 @@ We now need to create an access key/secret access key combination for ourselves.
 | #4    | In the prompt for `AWS Secret Access Key` enter the value from `SecretAccessKey` from the above output.  Press Enter to continue. | The value is pasted. |
 | #5    | Enter `us-east-1` into the `Default region name` prompt.    | The value for Ohio is assigned to the default region in the AWS CLI.     |
 | #6    | Press Enter to leave the `Default output format` blank. | The aws configure command completes. |
-| -------- | -------- | -------- |
+
+---
+---
 
 ### #3. Clone GitHub repo, deploy resources
 | Step    | Instructions    | Result|
@@ -95,6 +98,9 @@ Now that the apply is complete, let's check to see if the resource was created b
 When the command completes you should see a table with instance you created with the name Finance_Front_End.  
 
 Awesome!  You've deployed your EC2 instance to the cloud. 
+
+---
+---
 
 ### Update and deploy
 > And another problem?!?!  After you deploy the server the Security Department says you must update the Name tag to Finance_Mobile_Front_End.  Ugh!
