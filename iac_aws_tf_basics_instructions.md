@@ -13,8 +13,10 @@ This lab will build your skill and confidence using IaC and addressing chaotic s
 5.  **Commit and clean up:** Commit back to GitHub and clean up.
 
 > It is no stretch of the imagination to be able to complete all steps in this lab (with experience) in less than 10 minutes. :sunglasses:
-
+----
+----
 ## Lab Steps
+
 ### Start Lab
 ***Instructions about starting the lab on the platform*
 *Instructions about copying down the access key & secret access key***
