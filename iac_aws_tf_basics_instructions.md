@@ -21,6 +21,12 @@ This lab will build your skill and confidence using IaC and addressing chaotic s
 ***Instructions about starting the lab on the platform*
 *Instructions about copying down the access key & secret access key***
 
+---
+
+---
+
+
+
 ### 2. Set up your workstation
 | Step     | Instructions | Result |
 | -------- | -------- | -------- |
@@ -38,19 +44,19 @@ This lab will build your skill and confidence using IaC and addressing chaotic s
 
 
 
-> ***Check In:***  So far, we have solved the problem of getting a working environment and loading the tools to get the job done.  Now we need to get  
+> ***Check In:***  You now have a workstation with the tooling needed to deploy infrastructure.   
 ---
 ---
 ### 3. AWS CLI permissions
 We now need to create an access key/secret access key combination for ourselves.  This is needed in order to configure the AWS CLI.  
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
-| #1    | Run the following: `aws iam create-access-key --user-name <<PROVIDED_STUDENT_NAME>>'    | JSON for the access key and secret access key is written to the screen.    |
-| #2    | Run 'aws configure'    | You are prompted to enter the AWS Access Key ID  for this user. |
-| #3    | Copy and paste the value for `AccessKeyId` in the output from the `create-access-key` command above. Press Enter to continue. | The value is pasted in. |
-| #4    | In the prompt for `AWS Secret Access Key` enter the value from `SecretAccessKey` from the above output.  Press Enter to continue. | The value is pasted. |
+| #1    | Run the following: `aws iam create-access-key --user-name <<PROVIDED_STUDENT_NAME>>'    | JSON for the access key and secret access key are written to the screen.  |
+| #2    | Run `aws configure`  | You are prompted to enter the AWS Access Key ID  for this user. |
+| #3    | For the `AWS Access Key ID` enter the value `AccessKeyId` from the create key command above. | The value is pasted in and assigned. |
+| #4    | In the prompt for `AWS Secret Access Key` enter the value from `SecretAccessKey` from the create key output.  Press Enter to continue. | The value is pasted in and assigned. |
 | #5    | Enter `us-east-1` into the `Default region name` prompt.    | The value for Ohio is assigned to the default region in the AWS CLI.     |
-| #6    | Press Enter to leave the `Default output format` blank. | The aws configure command completes. |
+| #6    | Press Enter to leave the `Default output format` field blank. | The aws configure command completes. |
 
 ---
 ---
