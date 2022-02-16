@@ -6,8 +6,7 @@ Something broke in the cloud, and you need to fix it quickly!  And it's 3 AM! :w
 >  This lab is designed to be a "real-world scenario." Often in these situations, you are forced to deal with several other problems so that you can get back to resolving the original issue.  You must solve for getting the tools needed, getting credentials correct, fixing a problem with the resource you create via an update, and finally ensuring your work is stashed back to a repo.  Real issues are not easy!  Let's get some experience handling "the real."
 
 This lab will build your skill and confidence using IaC and addressing chaotic situations promptly and efficiently.  You will learn how to quickly set up a working environment with tooling, deploy cloud resources using infrastructure as code, make an update, and then store our updated work using git.   To do this, we will:
-1.  **Connect to AWS CloudShell:** To get a shell quickly, we will leverage AWS CloudShell.
-1.  **Install tools:** Install tools like Terraform and git into CloudShell.
+1.  **Setup your workstation:** To get a shell quickly, we will leverage AWS CloudShell.  Then, install tools like Terraform and git into CloudShell.
 2.  **AWS CLI permissions:** Configure the AWS CLI with the appropriate key and secret key.
 3.  **Clone GitHub repo, deploy resources:** Pull an IaC template from GitHub and use it to deploy resources to AWS.
 4.  **Update and deploy:** Update the template and deploy the update.
@@ -20,7 +19,7 @@ This lab will build your skill and confidence using IaC and addressing chaotic s
 ***Instructions about starting the lab on the platform*
 *Instructions about copying down the access key & secret access key***
 
-### Setup your workstation
+### #1. Setup your workstation
 | Step     | Instructions | Result | 
 | -------- | -------- | -------- | 
 | #1       | Log into the AWS Console using the provided username & password | Log into the console| 
@@ -37,15 +36,19 @@ This lab will build your skill and confidence using IaC and addressing chaotic s
 
 > ***Check In:***  So far, we have solved the problem of getting a working environment and loading the tools to get the job done.  Now we need to get  
    
-### AWS CLI permissions
+### #2. AWS CLI permissions
 We now need to create an access key/secret access key combination for ourselves.  This is needed in order to configure the AWS CLI.  
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | #1    | Run the following: `aws iam create-access-key --user-name <<PROVIDED_STUDENT_NAME>>'    | JSON for the access key and secret access key is written to the screen.    |
 | #2    | Run 'aws configure'    | You are prompted to enter the AWS Access Key ID  for this user. |
-| #3    | Copy and paste the value for `AccessKeyId` in the output from the `create-access-key` command above. | The value is 
+| #3    | Copy and paste the value for `AccessKeyId` in the output from the `create-access-key` command above. Press Enter to continue. | The value is pasted in. |
+| #4    | In the prompt for `AWS Secret Access Key` enter the value from `SecretAccessKey` from the above output.  Press Enter to continue. | The value is pasted. |
+| #5    | Enter `us-east-1` into the `Default region name` prompt.    | The value for Ohio is assigned to the default region in the AWS CLI.     |
+| #6    | Press Enter to leave the `Default output format` blank. | The aws configure command completes. |
+| -------- | -------- | -------- |
 
-### Clone the GitHub repo containing the Terraform template and make updates.
+### #3. Clone GitHub repo, deploy resources
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | #1    | In a browser naviagate to `https://OUR PUBLIC GITHUB FOR THIS LAB` | The GitHub repo for this lab is displayed.|
@@ -91,7 +94,7 @@ When the command completes you should see a table with instance you created with
 
 Awesome!  You've deployed your EC2 instance to the cloud. 
 
-### Update the instance 
+### Update and deploy
 > And another problem?!?!  After you deploy the server the Security Department says you must update the Name tag to Finance_Mobile_Front_End.  Ugh!
 
 Now we are going to update the instance by changing the `Name` tag to `Finance_Mobile_Front_End`.  We will using vim to make the change.  Don't worry if you've never used vim before...I'll walk you through it. :wink:
@@ -112,11 +115,16 @@ Now let's verify the update.  Run the following command:
 
 When the table prints to the screen scroll through the values and you should see a row in the Key column named `Name` with the value (the last column) of `Finance_Mobile_Front_End`.
 
-### Terminate the instance
+### Commit and clean up
+You've successfully deployed and EC2 instance, make a change, and now that everyone is happy we need to stow our updates back to GitHub and clean everything up.  
+
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | #1    | Run the command `terraform destory` | After a few moments the question `Do you really want to destroy all resources?` will be written and the prompt will be at `Enter a value:`. |
-| #2    | Type yes to the prompt.    | Terraform terminates the instance.  This takes about a minute and will show the message `Destroy complete! Resources: 1 destroyed.` when completed.    |
+| #2    | Type yes to the prompt.    | Terraform terminates the instance.  This takes about a minute and will show the message `Destroy complete! Resources: 1 destroyed.` when completed.   |
+| #3    | Type `git add .` (don't forget the perdion) and press Enter.  | git adds all files for pushing back to GitHub.    |
+| #4    | Type `git commit -m "Updates tag for Name."` and then press Enter.    | A commit message is now associated with the change.    |
+| #5    | Type `git push` and then Enter.    | The updated template is written back to GitHub.    |
 
 
 TO DO: HOW TO UPDATE CLOUDSHELL WITH THE GITHUB ACCESS KEYS
