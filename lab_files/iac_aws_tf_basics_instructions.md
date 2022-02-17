@@ -3,13 +3,13 @@
 ## Introduction
 Something broke in the cloud, and you need to fix it quickly!  And it's 3 AM! :weary: .  The workstation you use day-to-day for cloud engineering is not available, everything is going wrong, and everyone is looking at you to resolve the problem.  
 
->  This lab is designed to be a "real-world scenario." Often in these situations, you are forced to deal with several other problems so that you can get back to resolving the original issue.  You must solve for getting the tools needed, getting credentials correct, fixing a problem with the resource you create via an update, and finally ensuring your work is stashed back to a repo.  Real issues are not easy!  Let's get some experience handling "the real."
+>  This lab is designed to be a "real-world scenario." Often in these situations, you are forced to deal with several other problems so that you can get back to resolving the original issue.  You must solve for getting the tools needed, getting credentials correct, fixing a problem with the deployed resources, and finally ensuring your work is stashed back to a repo.  Real issues are not easy!  Let's get some experience handling "the real."
 
-This lab will build your skill and confidence using IaC and addressing chaotic situations promptly and efficiently.  You will learn how to quickly set up a working environment with tooling, deploy cloud resources using infrastructure as code, make an update, and then store our updated work using git.   To do this, we will:
+This lab will build your basic skills and confidence using IaC and addressing chaotic situations promptly and efficiently.  You will learn how to set up a working environment with tooling quickly, deploy cloud resources using infrastructure as code, make an update, and then store our updated work using git.   To do this, we will:
 1.  **Start Lab:** Launch the lab environment and get login credentials.
 1.  **Set up your workstation:** To get a shell quickly, we will leverage AWS CloudShell.  Then we will install tools like Terraform and git into CloudShell.
 2.  **AWS CLI permissions:** Configure the AWS CLI with the appropriate key and secret key.
-3.  **Clone GitHub repo, deploy resources:** Pull an IaC template from GitHub and use it to deploy resources to AWS.
+3.  **Clone GitHub repo, deploy resources:** Pull an IaC template from GitHub and deploy resources to AWS.
 3.  **Initialize, format, and validate the template:**
 3.  **Plan and apply the template:**
 4.  **Update and deploy:** Update the template and deploy the update.
@@ -30,13 +30,13 @@ This lab will build your skill and confidence using IaC and addressing chaotic s
 ### 2. Set up your workstation
 | Step     | Instructions | Result |
 | -------- | -------- | -------- |
-| #1       | Log into the AWS Console using the provided student username & password | Log into the console|
+| #1       | Login to the AWS Console using the provided student username & password | Logged into the AWS console |
 | #2       | In the service search, type `cloudshell`, and then in the list of services, select ***CloudShell*** | The CloudShell console opens. |
 | #3       | Click ***Close*** in the Welcome card.| NA |
 | #4       | Ensure you are in the correct region in the top right of the AWS Console window.  You should be in `us-east-1`. | The Region selector shows *N. Virginia*. |
 | #5       | In the console run `aws configure` pasting in the values from the lab start page for the *AWS Access Key ID*, *AWS Secret Access Key* values.  Set the *Default region name* to `us-east-1` and leave the *Default output format* value blank.  Then run the following command to check permissions: | Running `aws s3 ls` shows S3 buckets in the account (if any).  No errors for permissions. |
 | #6    | Run the following to install yum utilities: `sudo yum install -y yum-utils` |Yum's utilities are installed|
-| #7 | Run the following to configure the Hashicorp repoistory to git: `sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo` |Hashicorp's repository is available in this CloudShell session.|
+| #7 | Run the following to configure the Hashicorp repository to git: `sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo` |Hashicorp's repository is available in this CloudShell session.|
 | #8 | Run the following to install Terraform: `sudo yum -y install terraform` |Terraform is now installed in CloudShell|
 | #9   | Verify your Terraform installation by running `terraform --version`.| The installed version of Terraform is displayed. |
 | #10 | Install git by running the following command to install git:`sudo yum install git` | Git is installed |
