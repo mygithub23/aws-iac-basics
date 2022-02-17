@@ -19,7 +19,7 @@ This lab will build your basic skills and confidence using IaC and addressing ch
 ----
 ### 1. Start Lab
 ***Instructions about starting the lab on the platform*
-*Instructions about copying down the access key & secret access key***
+*Instructions about copying down the access key & secret access key*** 
 
 ---
 
