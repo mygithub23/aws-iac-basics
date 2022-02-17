@@ -31,7 +31,7 @@ This lab will build your basic skills and confidence using IaC and addressing ch
 | Step     | Instructions | Result |
 | -------- | -------- | -------- |
 | #1       | Login to the AWS Console using the provided student username & password | Logged into the AWS console |
-| #2       | In the service search, type `cloudshell`, and then in the list of services, select ***CloudShell***.  You can also click the icon for CloudShell on the ribbon bar... ![cloudshell_icon](/Users/brooksseahorn/Documents/ine_working_area/aws-iac-basics/images/cloudshell_icon.png) | The CloudShell console opens. |
+| #2       | In the service search, type `cloudshell`, and then in the list of services, select ***CloudShell***.  You can also click the icon for CloudShell on the ribbon bar. | The CloudShell console opens. |
 | #3       | Click ***Close*** in the Welcome card.| NA |
 | #4       | Ensure you are in the correct region in the top right of the AWS Console window.  You should be in `us-east-1`. | The Region selector shows *N. Virginia*. |
 | #5       | In the console run `aws configure` pasting in the values from the lab start page for the *AWS Access Key ID*, *AWS Secret Access Key* values.  Set the *Default region name* to `us-east-1` and leave the *Default output format* value blank.  Then run the following command to check permissions: | Running `aws s3 ls` shows S3 buckets in the account (if any).  No errors for permissions. |
@@ -44,11 +44,11 @@ This lab will build your basic skills and confidence using IaC and addressing ch
 
 
 
-> ***Check In:***  You now have a workstation with the tooling needed to deploy infrastructure.   
+> ***Check-In:***  You now have a workstation with the tooling needed to deploy infrastructure.   
 ---
 ---
 ### 3. AWS CLI permissions
-We now need to create an access key/secret access key combination for ourselves.  This is needed in order to configure the AWS CLI.  
+We now need to create an access key/secret access key combination.  This is necessary in order to configure the AWS CLI.  
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | #1    | Run the following: `aws iam create-access-key --user-name <<PROVIDED_STUDENT_NAME>>'   | JSON for the access key and secret access key are written to the screen.  |
