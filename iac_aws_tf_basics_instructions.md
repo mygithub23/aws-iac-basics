@@ -51,7 +51,7 @@ This lab will build your skill and confidence using IaC and addressing chaotic s
 We now need to create an access key/secret access key combination for ourselves.  This is needed in order to configure the AWS CLI.  
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
-| #1    | Run the following: `aws iam create-access-key --user-name <<PROVIDED_STUDENT_NAME>>'    | JSON for the access key and secret access key are written to the screen.  |
+| #1    | Run the following: `aws iam create-access-key --user-name <<PROVIDED_STUDENT_NAME>>'   | JSON for the access key and secret access key are written to the screen.  |
 | #2    | Run `aws configure`  | You are prompted to enter the AWS Access Key ID  for this user. |
 | #3    | For the `AWS Access Key ID` enter the value `AccessKeyId` from the create key command above. | The value is pasted in and assigned. |
 | #4    | In the prompt for `AWS Secret Access Key` enter the value from `SecretAccessKey` from the create key output.  Press Enter to continue. | The value is pasted in and assigned. |
