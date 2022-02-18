@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
 
-  "Description" : "Stack to create resources for security team.  Based on CloudFormation minimal permissions for gourps. ",
+  "Description" : "Stack to create resources for security team.  Based on CloudFormation minimal permissions for groups. ",
 
   "Parameters" : {
     "Password": {
