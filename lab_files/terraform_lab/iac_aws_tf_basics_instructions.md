@@ -1,6 +1,9 @@
 # Deploying AWS resources with Terraform, from scratch!
 
+[TOC]
+
 ## Introduction
+
 Something broke in the cloud, and you need to fix it quickly!  And it's 3 AM! :weary: .  The workstation you use day-to-day for cloud engineering is not available, everything is going wrong, and everyone is looking at you to resolve the problem.  
 
 >  This lab is designed to be a "real-world scenario." Often in these situations, you are forced to deal with several other problems so that you can get back to resolving the original issue.  You must solve for getting the tools needed, getting credentials correct, fixing a problem with the deployed resources, and finally ensuring your work is stashed back to a repo.  Real issues are not easy!  Let's get some experience handling "the real."
