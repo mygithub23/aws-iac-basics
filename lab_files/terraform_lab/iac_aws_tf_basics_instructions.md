@@ -135,7 +135,7 @@ Now let's verify the update.  Run the following command:
 When the table prints to the screen scroll through the values and you should see a row in the Key column named `Name` with the value (the last column) of `Finance_Mobile_Front_End`.
 
 ### 8. Commit and clean up
-You've successfully deployed and EC2 instance, make a change, and now that everyone is happy we need to stow our updates back to GitHub and clean everything up.  
+You've successfully deployed and EC2 instance, made a change, and now that everyone is happy we need to stow our updates back to GitHub and clean everything up.  
 
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
