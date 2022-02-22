@@ -34,22 +34,25 @@ The solution will be considered successful if anyone with access to CloudFormati
 
 ## Steps
 
-| Step | Instructions                                                 | Result                                                       |
-| ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| #1   | Log into AWS using the provided student name and password    | Logged into the AWS Console                                  |
-| #2   | In the service search bar type *CloudFormation* and click the CloudFormation service in the list | The AWS CloudFormation console is opened                     |
-| #3   | In the upper left side of the screen, click the *Create Stack* button. | The Create Stack page is displayed                           |
-| #4   | At the bottom right of the Create Stack page, click the *View in Designer* button. |                                                              |
-| #5   | In the Designer, at the bottom click the *template* tab and paste the contents of the file [*aws_basics_cf_template.json*](https://github.com/Internetworkexpert/aws-iac-basics/blob/main/lab_files/cloudformation_lab/aws_basics_cf_template.json) into the window. | The JSON appears in the template tab and resources appear on the work surface. |
-| #6   | Click the *Create Stack* icon.  It is the small cloud with an arrow pointing up, just above the resource types list on the left side of the page. | CloudFormation returns to the *Create stack* page.  The Amazon S3 URL textbox will be populated with the S3 key of the JSON template. |
-| #7   | Click *Next*                                                 | The *Specify stack details* page is displayed                |
-| #8   | In the *Stack name* textbox enter `cf_security_demo`         | NA                                                           |
-| #9   | In the password field enter a password.  Ensure the password has the following: an upper case letter, a lower case letter, a number, and a special character. | NA                                                           |
-| #10  | Click *Next*                                                 | NA                                                           |
-| #11  | Scroll to the bottom of the *Configure stack options* page and click Next. | The Review page is displayed.                                |
-| #12  | On the *Review cf_security_demo* page, scroll to the bottom and click the acknowledgment box for creating IAM::Group resources. | NA                                                           |
-| #13  | Click the *Create Stack* button at the bottom of the page    | You are returned to the CloudFormation page where the output from the stack creation is shown. |
-|      |                                                              |                                                              |
+- | Step | Instructions                                                 | Result                                                       |
+  | ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
+  | #1   | Log into AWS using the provided student name and password    | Logged into the AWS Console                                  |
+  | #2   | In the service search bar type *CloudFormation* and click the CloudFormation service in the list | The AWS CloudFormation console is opened                     |
+  | #3   | Click the **Create Stack** button.  The create stack button will appear in the upper left or right hand side of the page. | The Create Stack page is displayed                           |
+  | #4   | In the **Prerequisite - Preate template** box select he radio button for **Create template in Designer**. | The radio button for create template in Designer is selected. |
+  | #5   | In the **Create template in Designer** box click the button labeled **Create template in Designer**. | The Designer page is loaded.                                 |
+  | #6   | In the Designer, at the bottom click the **Template** tab and replace the contents of the window with the contents of the file [*aws_basics_cf_template.json*](https://github.com/Internetworkexpert/aws-iac-basics/blob/main/lab_files/cloudformation_lab/aws_basics_cf_template.json) . | The JSON appears in the template tab and resources appear on the work surface. |
+  | #7   | Click the **Create Stack** icon.  It is the small cloud with an arrow pointing up, just above the resource types list on the left side of the page. | CloudFormation returns to the *Create stack* page.  The Amazon S3 URL textbox will be populated with the S3 key of the JSON template. |
+  | #8   | Click **Next** at the bottom of the page                     | The **Specify stack details** page is displayed              |
+  | #9   | In the **Stack name** textbox enter `cf_security_demo`       | NA                                                           |
+  | #10  | In the **Parameters** section, in the **Password** text boxfield enter a password.  Ensure the password has the following: (1) upper case letter, (2) a lower case letter, (3)a number, and (4) a special character. | NA                                                           |
+  | #11  | Click **Next**                                               | NA                                                           |
+  | #12  | In the **Tags** box enter a key value of *purpose* with value of *cf security demo*. | When the stack is deployed all resources created will be tagged with *Purpose - cf security demo*. |
+  |      | Scroll to the bottom of the **Configure stack options** page and click **Next**. | The Review page is displayed.                                |
+  |      | On the *Review cf_security_demo* page, scroll to the bottom and click the acknowledgment box for creating IAM::Group resources. | NA                                                           |
+  |      | Click the **Create Stack** button at the bottom of the page  | You are returned to the CloudFormation page where the output from the stack creation is shown. |
+  |      |                                                              |                                                              |
+
 
 
 
