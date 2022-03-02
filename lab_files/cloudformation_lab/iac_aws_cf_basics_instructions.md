@@ -2,8 +2,6 @@
 
 [TOC]
 
-
-
 ## Introduction
 
 **Scenario:** The cybersecurity team is demanding complete control of the creation of users, groups, roles, and policies in AWS.  To that end, they want a standardizied, repeatable method to accomplish this goal.  As a proof-of-concept (POC), we will use CloudFormation to create a solution that will solve the problem of creating standardized users, groups, and policies in AWS.  Since we will design this to use the AWS Console, it will enable the cybersecurity team to quickly get up and running with the service and IaC.
