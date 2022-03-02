@@ -82,5 +82,16 @@ Let's take a moment and examine the output from the stack build here in the **Ev
 
 > What do you think about the fact that the values for the AccessKey and SecretKey are displayed here in the CloudFormation console?  More importantly, if this were an actual demo for the Security Team, how would you respond when asked about these values being displayed?
 
-Take a few more moments to 
+Take a few more moments to review some of the other resources created before moving on.
 
+**<u>Now we destory everything!</u>**
+
+| Step | Instructions                                                 | Result                                                       |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| #26  | At the top of the cf-demo-app page click the **Delete** button. | The **Delete cf-demo-app** box is displayed.                 |
+| #27  | Click the **Delete stack** button                            | AWS CloudFormation initiates a deletion of the cf-demo-app stack. |
+| #28  | Hit the refresh button until, on the **Events** tab you see an entry with a logical id of *cf-demo-app* with a status of *DELETE_COMPLETE*. | The delete message for the delete event is shown on the Events tab. |
+
+That's it!  You've just successfully deployed and destroyed the stack for IAM resources.
+
+Close the lab to end your session if you are using INE's lab environment.  If you are using your own environment, all resources created by this lab will have been removed from your account.
