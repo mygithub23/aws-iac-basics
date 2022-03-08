@@ -73,18 +73,7 @@ We now need to create an access key/secret access key combination.  This is nece
 | #2    | Clone the repo by running the following in CloudShell: `git clone https://SOMETHINGorOther' | The repo is copied into a new folder in your CloudShell directory. |
 | #3    | In CloudShell, run: <ul><li>`cd [THE DIR NAME]`</li><li>`cat main.tf`</li></ul> | The template is written to the screen. |
 
-> ### Reading the template file
-> In the output of the file main.tf notice that:
-> - The `required_providers` is set to 'hashicorp/aws.'  This will pull what we need to deploy resources to the AWS Cloud infrastructure.
->     - The `required_version` says we want to use only provider versions greater than 0.14.9.  This can be a significant consideration should Hashicorp introduce a change that makes, say, version 0.14 different from a future version that introduces something "breaking changes."  In this case, we would set the value to a specific value such as `=0.14.9`, so we only use that version.
-> - In the `provider "aws"` the profile is the default (the default profile in your ~/.aws/config).  We also set the target region to US, Ohio (us-east-2).
->
-> *Now things get interesting.* :thinking:
->
-> - The `resource` section defines an EC2 instance running on a t3.micro instance with three tags.  Look at the Amazon Machine Image (AMI) value: `data.aws_ami.amazon_linux.id`.  That tells Terraform to look for a section named `aws_ami` in the file.  That section will query the AWS infrastructure to get the name of the latest Amazon Linux AMI.  This section guarantees that we always get the latest version of the Amazon Linux AMI.
->
-> Now that we know what will happen, let's move on.
->
+
 
 ### 5. Initialize, format, and validate the template
 | Step    | Instructions    | Result|

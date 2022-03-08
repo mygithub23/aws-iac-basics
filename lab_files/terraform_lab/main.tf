@@ -20,7 +20,7 @@ resource "aws_instance" "fin-mobile-frontend" {
   tags = {
     Name = "Finance_Front_End",
     Cost_Center = "Finance",
-    Admin_Contact = "fin_admins@ourcompany.com"
+    Admin_Contact = var.admin_group
   }
 }
 
@@ -32,4 +32,14 @@ data "aws_ami" "aws_linux" {
     values = ["amzn-ami-hvm-*-x86_64-gp2",]
   } 
 }
+
+data "terraform_remote_state" "fd_front_end" {
+  backend = "s3"
+  config = {
+    bucket = "tf-state-storage-202202"
+    key    = "finance/front-end-systems/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
 
