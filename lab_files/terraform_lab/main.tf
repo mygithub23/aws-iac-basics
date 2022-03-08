@@ -14,7 +14,7 @@ provider "aws" {
   region  = "us-east-2"
 }
 
-resource "aws_instance" "app_server" {
+resource "aws_instance" "myserver" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = "t3.micro"
 
