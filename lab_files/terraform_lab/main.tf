@@ -15,7 +15,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "fin-mobile-frontend" {
-  ami           = data.aws_ami.amazon_linux.id
+  ami           = data.aws_ami.aws_linux.id
   instance_type = "t3.micro"
 
   tags = {
@@ -25,7 +25,7 @@ resource "aws_instance" "fin-mobile-frontend" {
   }
 }
 
-data "aws_ami" "amazon_linux" {
+data "aws_ami" "aws_linux" {
   most_recent = true
   owners      = ["amazon"]
   filter { 
