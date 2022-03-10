@@ -4,3 +4,8 @@ variable "admin_group" {
   default     = "fin_global_admins@ourcompany.com"
 }
 
+variable "target_region" {
+  description = "Define the target region for the deployment."
+  type        = string
+  default     = "us-east-1"
+}

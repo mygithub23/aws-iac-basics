@@ -33,13 +33,4 @@ data "aws_ami" "aws_linux" {
   } 
 }
 
-data "terraform_remote_state" "fd_front_end" {
-  backend = "s3"
-  config = {
-    bucket = "tf-state-storage-202202"
-    key    = "finance/front-end-systems/terraform.tfstate"
-    region = "us-east-1"
-  }
-}
-
 
