@@ -47,42 +47,38 @@ This lab will build your basic skills and confidence using IaC and addressing ch
 | #10 | Install git by running the following command to install git:`sudo yum install git` | Git is installed |
 | #11 | Verify your git installation by running `git --version`. | The installed version of git is displayed. |
 
-
-
 > ***Check-In:***  You now have a workstation with the tooling needed to deploy infrastructure.   
 ---
 ---
-### 3. AWS CLI permissions
-We now need to create an access key/secret access key combination.  This is necessary to configure the AWS CLI.  
+
+
+### 3. Fork/Clone GitHub repo
+
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
-| #1    | Run the following: `aws iam create-access-key --user-name <<PROVIDED_STUDENT_NAME>>'   | JSON for the access key and secret access key is written to the screen.  |
-| #2    | Run `aws configure`  | You are prompted to enter the AWS Access Key ID. |
-| #3    | Enter the value AccessKeyId from the create key command above for the AWS Access Key ID. | The value is pasted in and assigned. |
-| #4    | In the AWS Secret Access Key prompt, enter the value from `SecretAccessKey` from the create key output.  Press Enter to continue. | The value is pasted in and assigned. |
-| #5    | Enter `us-east-1` into the `Default region name` prompt.    | The value for Ohio is assigned to the default region in the AWS CLI.     |
-| #6    | Press Enter to leave the `Default output format` field blank. | The AWS configure command completes. |
+| #1   | Log into your own GitHub account | NA |
+| #2 | Navigate in browser to https://github.com/Internetworkexpert/cloud-aws-iac | NA |
+| #3 | Fork the repo into your own account by click the **Fork** button in the top left of the web page.  If you have access to multiple accounts in GitHub, a dialog box will open asking where the repo should be forked to.  Choose your own account or the account of your choice. | GitHub will redirect back to your directory with the cloud-aws-iac forked into your account. |
+| #4 | Back in your account, you will now have a forked copy of the *cloud-aws-iac* repo.  Click the **Code** button, and in the box that opens, copy the https string for cloning the repo (either select and copy or click the copy button to the right of the https URL). | The clone URL for your copy of the repo is copied. |
+| #5 | Back in CloudShell run `git clone <PASTE THE URL COPIED IN THE ABOVE STEP>.` | Your copy of the repo is cloned into CloudShell. |
+| #6 | Change into the new directory | NA |
+
+Run `ls la` to see the files you just forked.  For an explanation of the files, watch the accompying demo/walk through video for this lab.
 
 ---
 ---
 
-### 4. Clone GitHub repo, deploy resources
-| Step    | Instructions    | Result|
-| -------- | -------- | -------- |
-| #1    | In a browser naviagate to `https://OUR PUBLIC GITHUB FOR THIS LAB` | The GitHub repo for this lab is displayed.|
-| #2    | Clone the repo by running the following in CloudShell: `git clone https://SOMETHINGorOther' | The repo is copied into a new folder in your CloudShell directory. |
-| #3    | In CloudShell, run: <ul><li>`cd [THE DIR NAME]`</li><li>`cat main.tf`</li></ul> | The template is written to the screen. |
 
 
+### 4. Initialize, format, and validate the template
 
-### 5. Initialize, format, and validate the template
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | #1    | Run the command `terraform init` to initialize the directory with the needed providers.    | A message containing `Terraform has been successfully initialized!` will be printed on the screen. |
 | #2    | Run the command `terraform fmt` to ensure the terraform template file is well-formatted.     | The file name `main.tf` is written to the screen if no errors are found. |
 | #3    | Run the command `terraform validate`    | The message `"Success! The configuration is valid."`is written to the screen. |
 
-### 6. Plan and Apply the template
+### 5. Plan and Apply the template
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | #1    | Run the command `terraform plan`    | A large amount of data will be written on the screen.  Verify that a value is shown for the ami that will be created.  You should see the following at the end of the output: `Plan: 1 to add, 0 to change, 0 to destroy.` |
@@ -104,7 +100,7 @@ Awesome!  You've deployed your EC2 instance to the cloud.
 ---
 ---
 
-### 7. Update and deploy
+### 6. Update and deploy
 > And another problem?!?!  After you deploy the server, the Security Department says you must update the Name tag to Finance_Mobile_Front_End.  Ugh!
 
 Now we will update the instance by changing the `Name` tag to `Finance_Mobile_Front_End`.  We will be using vim to make the change.  Don't worry if you've never used vim before...I'll walk you through it. :wink:
@@ -125,7 +121,7 @@ Now let's verify the update.  Run the following command:
 
 When the table prints to the screen, scroll through the values, and you should see a row in the Key column named `Name` with the value (the last column) of `Finance_Mobile_Front_End`.
 
-### 8. Commit and clean up
+### 7. Commit and clean up
 You've successfully deployed an EC2 instance, made a change, and now that everyone is happy, we need to stow our updates back to GitHub and clean everything up.  
 
 | Step    | Instructions    | Result|
