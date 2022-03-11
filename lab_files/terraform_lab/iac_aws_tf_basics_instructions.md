@@ -4,27 +4,25 @@
 
 [TOC]
 
-## Introduction
+## Scenario / Introduction
 
 Something broke in the cloud, and you need to fix it quickly!  And it's 3 AM! :weary: .  The workstation you use day-to-day for cloud engineering is not available, everything is going wrong, and everyone is looking at you to resolve the problem.  
 
->  This lab is designed to be a "real-world scenario." Often in these situations, you are forced to deal with several other problems so that you can get back to resolving the original issue.  You must solve for getting the tools needed, getting credentials correct, fixing a problem with the deployed resources, and finally ensuring your work is stashed back to a repo.  Real issues are not easy!  Let's get some experience handling "the real."
+>  This lab is designed to be a "real-world scenario." Often in these situations, you are forced to deal with several other problems so that you can get back to resolving the original issue.  You must solve for getting the tools needed, getting templates, fixing a problem with the deployed resources, and finally ensuring your work is stashed back to a repo.  Real issues are not easy!  Let's get some experience handling "the real."
 
 This lab will build your basic skills and confidence using IaC and addressing chaotic situations promptly and efficiently.  You will learn how to set up a working environment with tooling quickly, deploy cloud resources using infrastructure as code, make an update, and then store our updated work using git.   To do this, we will:
 1.  **Start Lab:** Launch the lab environment and get login credentials.
 1.  **Set up your workstation:** To get a shell quickly, we will leverage AWS CloudShell.  Then we will install tools like Terraform and git into CloudShell.
-2.  **AWS CLI permissions:** Configure the AWS CLI with the appropriate key and secret key.
-3.  **Clone GitHub repo, deploy resources:** Pull an IaC template from GitHub and deploy resources to AWS.
-3.  **Initialize, format, and validate the template:**
-3.  **Plan and apply the template:**
+3.  **Fork/Clone GitHub repo:** Pull an IaC template from GitHub and deploy resources to AWS.
+3.  **Initialize, format, and validate the template:** Initialize and validate the template
+3.  **Plan and apply the template:** Run plan to see what terraform will do, then apply the template.
 4.  **Update and deploy:** Update the template and deploy the update.
 5.  **Commit and clean up:** Commit back to GitHub and clean up.
 
 ----
 ----
 ### 1. Start Lab
-***Instructions about starting the lab on the platform*
-*Instructions about copying down the access key & secret access key*** 
+***Instructions about starting the lab on the platform***
 
 ---
 
@@ -63,7 +61,7 @@ This lab will build your basic skills and confidence using IaC and addressing ch
 | #5 | Back in CloudShell run `git clone <PASTE THE URL COPIED IN THE ABOVE STEP>.` | Your copy of the repo is cloned into CloudShell. |
 | #6 | Change into the new directory | NA |
 
-Run `ls la` to see the files you just forked.  For an explanation of the files, watch the accompying demo/walk through video for this lab.
+Run `ls -la` to see the files you just forked.  For an explanation of the files, watch the accompying demo/walk through video for this lab.
 
 ---
 ---
@@ -78,7 +76,14 @@ Run `ls la` to see the files you just forked.  For an explanation of the files, 
 | #2    | Run the command `terraform fmt` to ensure the terraform template file is well-formatted.     | The file name `main.tf` is written to the screen if no errors are found. |
 | #3    | Run the command `terraform validate`    | The message `"Success! The configuration is valid."`is written to the screen. |
 
+---
+
+---
+
+
+
 ### 5. Plan and Apply the template
+
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | #1    | Run the command `terraform plan`    | A large amount of data will be written on the screen.  Verify that a value is shown for the ami that will be created.  You should see the following at the end of the output: `Plan: 1 to add, 0 to change, 0 to destroy.` |
@@ -100,7 +105,10 @@ Awesome!  You've deployed your EC2 instance to the cloud.
 ---
 ---
 
+
+
 ### 6. Update and deploy
+
 > And another problem?!?!  After you deploy the server, the Security Department says you must update the Name tag to Finance_Mobile_Front_End.  Ugh!
 
 Now we will update the instance by changing the `Name` tag to `Finance_Mobile_Front_End`.  We will be using vim to make the change.  Don't worry if you've never used vim before...I'll walk you through it. :wink:
@@ -121,7 +129,14 @@ Now let's verify the update.  Run the following command:
 
 When the table prints to the screen, scroll through the values, and you should see a row in the Key column named `Name` with the value (the last column) of `Finance_Mobile_Front_End`.
 
+---
+
+---
+
+
+
 ### 7. Commit and clean up
+
 You've successfully deployed an EC2 instance, made a change, and now that everyone is happy, we need to stow our updates back to GitHub and clean everything up.  
 
 | Step    | Instructions    | Result|
