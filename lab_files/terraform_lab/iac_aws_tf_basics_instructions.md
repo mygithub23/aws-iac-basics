@@ -139,13 +139,32 @@ When the table prints to the screen, scroll through the values, and you should s
 
 You've successfully deployed an EC2 instance, made a change, and now that everyone is happy, we need to stow our updates back to GitHub and clean everything up.  
 
+BUT FIRST!!!...we have a little problem.  You will not be able to write back to your GitHub repo with a personal access token.  When you run `git push`, you will be prompted with a username and password.  The password is where you will enter the token.  The steps below include generating a token and adding to CloudShell.
+
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
-| #1    | Run the command `terraform destory` | After a few moments, the question `Do you really want to destroy all resources?` will be written, and the prompt will be at `Enter a value:`. |
+| #1    | Run the command `terraform destroy`f | After a few moments, the question `Do you really want to destroy all resources?` will be written, and the prompt will be at `Enter a value:`. |
 | #2    | Type yes to the prompt.    | Terraform terminates the instance.  This takes about a minute and will show the message `Destroy complete! Resources: 1 destroyed.` when completed.   |
 | #3    | Type `git add .` (don't forget the period) and press Enter. | git adds all files for pushing back to GitHub.    |
-| #4    | Type `git commit -m "Updates tag for Name."` Then press Enter.    | A commit message is now associated with the change.    |
-| #5    | Type `git push` and then Enter.    | The updated template is written back to GitHub.    |
+| #4 | If not already logged in, log in to your GitHub account | You are logged into GitHub. |
+| #5 | On the GitHub page, click the drop-down in the top right of the page next to your avatar's picture | A drop-down menu appears. |
+| #6 | In the drop-down select *Settings*. | The Settings page appears. |
+| #7 | Scroll to the bottom of the menu on the left side of the page and click *Developer settings* | The Developer Settings page appears. |
+| #8 | On the left side of the page, in the menu, select *Personal access tokens* | The Personal access tokens page appears. |
+| #9 | Click the **Generate new token** | You may be prompted to re-enter your GitHub password.  Enter your password, click enter and the *New personal access token* page will appear. |
+| #10 | Enter a note to describe the purpose of this personal access token.  For example, *CloudFormation token* | NA |
+| #11 | In the expiration drop-down, set the expiration to 30 days (the default at the time of this writing). | NA |
+| #12 | For *Select scopes* select the top-level checkbox for *repo* | All of the checkboxes in the repo section are selected. |
+| #13 | Scroll to the bottom of the page and click the **Generate token** button. | The page with the new token appears. |
+| #14 | Copy the token (Ctrl-C).  Leave the page open until we are sure we have correctly copied and pasted the token into CloudShell | The page should be left open. |
+|  |  |  |
+| #   | Type `git commit -m "Updates tag for Name."` Then press Enter.    | A commit message is now associated with the change.    |
+| #    | Type `git push` and then Enter.    | The updated template is written back to GitHub.    |
+| # | Enter your GitHub username when prompted and press enter. | You are prompted for your GitHub password. |
+| # | Paste in your GitHub personal access token you generated above and press enter. | The git command completes showing that updates have been pushed back to GitHub. |
 
 
 TO DO: HOW TO UPDATE CLOUDSHELL WITH THE GITHUB ACCESS KEYS
+
+
+
