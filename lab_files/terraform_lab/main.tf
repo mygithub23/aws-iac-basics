@@ -19,18 +19,9 @@ resource "aws_instance" "fin-mobile-frontend" {
 
   tags = {
     Name = "Finance_Front_End",
-    Cost_Center = "Finance",
+    Cost_Center = var.cost_center,
     Admin_Contact = var.admin_group
   }
-}
-
-data "aws_ami" "aws_linux" {
-  most_recent = true
-  owners      = ["amazon"]
-  filter { 
-    name   = "name"
-    values = ["amzn-ami-hvm-*-x86_64-gp2",]
-  } 
 }
 
 

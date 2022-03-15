@@ -9,3 +9,10 @@ variable "target_region" {
   type        = string
   default     = "us-east-1"
 }
+
+
+variable "cost_center" {
+  description = "Define the target region for the deployment."
+  type        = string
+  default     = "Finance"
+}
