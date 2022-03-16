@@ -1,39 +1,8 @@
-![INE Logo](https://ine.com/_next/image?url=%2Fassets%2Flogos%2FINE-Logo-Orange-White-Revised.svg&w=256&q=75)
+Login
 
-# Deploying AWS resources with Terraform, from scratch!
-
-[TOC]
-
-## Scenario / Introduction
-
-Something broke in the cloud, and you need to fix it quickly!  And it's 3 AM! :weary: .  The workstation you use day-to-day for cloud engineering is not available, everything is going wrong, and everyone is looking at you to resolve the problem.  
-
->  This lab is designed to be a "real-world scenario." Often in these situations, you are forced to deal with several other problems so that you can get back to resolving the original issue.  You must solve for getting the tools needed, getting templates, fixing a problem with the deployed resources, and finally ensuring your work is stashed back to a repo.  Real issues are not easy!  Let's get some experience handling "the real."
-
-This lab will build your basic skills and confidence using IaC and addressing chaotic situations promptly and efficiently.  You will learn how to set up a working environment with tooling quickly, deploy cloud resources using infrastructure as code, make an update, and then store our updated work using git.   To do this, we will:
-1.  **Start Lab:** Launch the lab environment and get login credentials.
-1.  **Set up your workstation:** To get a shell quickly, we will leverage AWS CloudShell.  Then we will install tools like Terraform and git into CloudShell.
-3.  **Fork/Clone GitHub repo:** Pull an IaC template from GitHub and deploy resources to AWS.
-3.  **Initialize, format, and validate the template:** Initialize and validate the template
-3.  **Plan and apply the template:** Run plan to see what terraform will do, then apply the template.
-4.  **Update and deploy:** Update the template and deploy the update.
-5.  **Commit and clean up:** Commit back to GitHub and clean up.
-
-----
-----
-### 1. Start Lab
-***Instructions about starting the lab on the platform***
-
----
-
----
-
-
-
-### 2. Set up your workstation
-| Step     | Instructions | Result |
+|      |                                                              |                                                              |
 | -------- | -------- | -------- |
-| #1       | Log in to the AWS Console using the provided student username & password | Logged into the AWS console |
+|      | to the AWS Console using the provided student username & password | Logged into the AWS console |
 | #2       | In the service search, type `cloudshell; in the list of services, select ***CloudShell***.  You can also click the icon for CloudShell on the ribbon bar. | The CloudShell console opens. |
 | #3       | Click ***Close*** in the Welcome card.| NA |
 | #4       | Ensure you are in the correct region in the top right of the AWS Console window.  You should be in `us-east-1`. | The Region selector shows *N. Virginia*. |
@@ -56,12 +25,12 @@ This lab will build your basic skills and confidence using IaC and addressing ch
 | -------- | -------- | -------- |
 | #1   | Log into your own GitHub account | NA |
 | #2 | Navigate in browser to https://github.com/Internetworkexpert/cloud-aws-iac | NA |
-| #3 | Fork the repo into your own account by click the **Fork** button in the top left of the web page.  If you have access to multiple accounts in GitHub, a dialog box will open asking where the repo should be forked to.  Choose your own account or the account of your choice. | GitHub will redirect back to your directory with the cloud-aws-iac forked into your account. |
-| #4 | Back in your account, you will now have a forked copy of the *cloud-aws-iac* repo.  Click the **Code** button, and in the box that opens, copy the https string for cloning the repo (either select and copy or click the copy button to the right of the https URL). | The clone URL for your copy of the repo is copied. |
-| #5 | Back in CloudShell run `git clone <PASTE THE URL COPIED IN THE ABOVE STEP>.` | Your copy of the repo is cloned into CloudShell. |
+| #3 | Fork the repo into your account by clicking the **Fork** button in the top left of the web page.  If you have access to multiple accounts in GitHub, a dialog box will open asking where the repo should be forked.  Choose your account or the account of your choice. | GitHub will redirect back to your directory with the cloud-aws-iac forked into your account. |
+| #4 | Back in your account, you will now have a forked copy of the *cloud-aws-iac* repo.  Click the **Code** button, and in the box that opens, copy the HTTPS string for cloning the repo (either select and copy or click the copy button to the right of the HTTPS URL). | The clone URL for your copy of the repo is copied. |
+| #5 | Back in CloudShell, run `git clone <PASTE THE URL COPIED IN THE ABOVE STEP>.` | Your copy of the repo is cloned into CloudShell. |
 | #6 | Change into the new directory | NA |
 
-Run `ls -la` to see the files you just forked.  For an explanation of the files, watch the accompying demo/walk through video for this lab.
+Run `ls -la` to see the files you just forked.  For an explanation of the files, watch the accompanying demo/walk-through video for this lab.
 
 ---
 ---
@@ -74,7 +43,7 @@ Run `ls -la` to see the files you just forked.  For an explanation of the files,
 | -------- | -------- | -------- |
 | #1    | Run the command `terraform init` to initialize the directory with the needed providers.    | A message containing `Terraform has been successfully initialized!` will be printed on the screen. |
 | #2    | Run the command `terraform fmt` to ensure the terraform template file is well-formatted.     | The file name `main.tf` is written to the screen if no errors are found. |
-| #3    | Run the command `terraform validate`    | The message `"Success! The configuration is valid."`is written to the screen. |
+| #3    | Run the command `terraform validate`    | The message `"Success! The configuration is valid." `is written to the screen. |
 
 ---
 
@@ -91,7 +60,7 @@ Run `ls -la` to see the files you just forked.  For an explanation of the files,
 | #3    | Enter `yes` to the question `Do you want to perform these actions?`    | Terraform will be creating the resources and eventually write the following to the screen: `Apply complete! Resources: 1 added, 0 changed, 0 destroyed.`    |
 
 
-Now that the apply is complete, let's see if the resource was created by running the following, rather long query.  Ready?  Copy and paste the following command and run it.
+Now that the apply is complete let's see if the resource was created by running the following query.  Ready?  Please copy and paste the following command and run it.
 
 `aws ec2 describe-instances \
     --filters "Name=tag:Name,Values=Finance_Front_End" \
@@ -109,7 +78,7 @@ Awesome!  You've deployed your EC2 instance to the cloud.
 
 ### 6. Update and deploy
 
-> And another problem?!?!  After you deploy the server, the Security Department says you must update the Name tag to Finance_Mobile_Front_End.  Ugh!
+> And another problem?!?!  After deploying the server, the Security Department says you must update the Name tag to Finance_Mobile_Front_End.  Ugh!
 
 Now we will update the instance by changing the `Name` tag to `Finance_Mobile_Front_End`.  We will be using vim to make the change.  Don't worry if you've never used vim before...I'll walk you through it. :wink:
 | Step    | Instructions    | Result|
@@ -143,15 +112,15 @@ BUT FIRST!!!...we have a little problem.  You will not be able to write back to 
 
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
-| #1    | Run the command `terraform destroy`f | After a few moments, the question `Do you really want to destroy all resources?` will be written, and the prompt will be at `Enter a value:`. |
+| #1    | Run the command `terraform destroy` | After a few moments, the question `Do you really want to destroy all resources?` will be written, and the prompt will be at `Enter a value:`. |
 | #2    | Type yes to the prompt.    | Terraform terminates the instance.  This takes about a minute and will show the message `Destroy complete! Resources: 1 destroyed.` when completed.   |
 | #3    | Type `git add .` (don't forget the period) and press Enter. | git adds all files for pushing back to GitHub.    |
 | #4 | If not already logged in, log in to your GitHub account | You are logged into GitHub. |
 | #5 | On the GitHub page, click the drop-down in the top right of the page next to your avatar's picture | A drop-down menu appears. |
-| #6 | In the drop-down select *Settings*. | The Settings page appears. |
+| #6 | In the drop-down, select *Settings*. | The Settings page appears. |
 | #7 | Scroll to the bottom of the menu on the left side of the page and click *Developer settings* | The Developer Settings page appears. |
 | #8 | On the left side of the page, in the menu, select *Personal access tokens* | The Personal access tokens page appears. |
-| #9 | Click the **Generate new token** | You may be prompted to re-enter your GitHub password.  Enter your password, click enter and the *New personal access token* page will appear. |
+| #9 | Click the **Generate new token** | You may be prompted to re-enter your GitHub password.  Enter your password, click enter, and the *New personal access token* page will appear. |
 | #10 | Enter a note to describe the purpose of this personal access token.  For example, *CloudFormation token* | NA |
 | #11 | In the expiration drop-down, set the expiration to 30 days (the default at the time of this writing). | NA |
 | #12 | For *Select scopes* select the top-level checkbox for *repo* | All of the checkboxes in the repo section are selected. |
@@ -160,7 +129,7 @@ BUT FIRST!!!...we have a little problem.  You will not be able to write back to 
 |  |  |  |
 | #   | Type `git commit -m "Updates tag for Name."` Then press Enter.    | A commit message is now associated with the change.    |
 | #    | Type `git push` and then Enter.    | The updated template is written back to GitHub.    |
-| # | Enter your GitHub username when prompted and press enter. | You are prompted for your GitHub password. |
+| # | Enter your GitHub username when prompted, and press enter. | You are prompted for your GitHub password. |
 | # | Paste in your GitHub personal access token you generated above and press enter. | The git command completes showing that updates have been pushed back to GitHub. |
 
 
