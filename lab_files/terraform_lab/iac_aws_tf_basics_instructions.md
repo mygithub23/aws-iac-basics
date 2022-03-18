@@ -16,14 +16,9 @@ Something broke in the cloud, and you need to fix it quickly!  And it's 3 AM! :w
 
 >  Often in these situations, you are forced to deal with several other problems so that you can get back to resolving the original issue.  You must solve for getting the tools needed, getting templates, fixing a problem with the deployed resources, and finally ensuring your work is stashed back to a repo.  
 
-This lab will build your basic skills and confidence using IaC and addressing chaotic situations promptly and efficiently.  You will learn how to set up a working environment with tooling quickly, deploy cloud resources using infrastructure as code, make an update, and then store our updated work.   To do this, we will:
-1.  **Start Lab:** Launch the lab environment and get login credentials.
-1.  **Set up your workstation:** To get a shell quickly, we will leverage AWS CloudShell.  Then we will install tools like Terraform and git into CloudShell.
-3.  **Fork/Clone GitHub repo:** Pull an IaC template from GitHub and deploy resources to AWS.
-3.  **Initialize, format, and validate the template:** Initialize and validate the template
-3.  **Plan and apply the template:** Run plan to see what terraform will do, then apply the template.
-4.  **Update and deploy:** Update the template and deploy the update.
-5.  **Commit and clean up:** Commit back to GitHub and clean up.
+This lab will build your basic skills and confidence using IaC and addressing chaotic situations promptly and efficiently.  You will learn how to set up a working environment with tooling quickly, deploy cloud resources using infrastructure as code, make an update, and then store our updated work.   
+
+Let's start building!!!
 
 ----
 ----
@@ -65,7 +60,7 @@ This lab will build your basic skills and confidence using IaC and addressing ch
 | #3 | Fork the repo into your own account by click the **Fork** button in the top left of the web page.  If you have access to multiple accounts in GitHub, a dialog box will open asking where the repo should be forked to.  Choose your own account or the account of your choice. | GitHub will redirect back to your directory with the cloud-aws-iac forked into your account. |
 | #4 | Back in your account, you will now have a forked copy of the *cloud-aws-iac* repo.  Click the **Code** button, and in the box that opens, copy the https string for cloning the repo (either select and copy or click the copy button to the right of the https URL). | The clone URL for your copy of the repo is copied. |
 | #5 | Back in CloudShell run `git clone <PASTE THE URL COPIED IN THE ABOVE STEP>.` | Your copy of the repo is cloned into CloudShell. |
-| #6 | Change into the new directory | NA |
+| #6 | Run the following command to change into the Terraform lab: `cd cloud-aws-iac/lab_files/terraform_lab/` | NA |
 
 Run `ls -la` to see the files you just forked.  For an explanation of the files, watch the accompying demo/walk through video for this lab.
 
@@ -74,13 +69,21 @@ Run `ls -la` to see the files you just forked.  For an explanation of the files,
 
 
 
-### 4. Initialize, format, and validate the template
+### 4. Configure remote state
+
+You now need to configure storage of the Terraform state files into remote storage: Amazon S3 and Amazon DynamoDB.  To do that we will modify the _backend.tf with an S3 bucket and DynamoDB table that we create in the student AWS account.
 
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
-| #1    | Run the command `terraform init` to initialize the directory with the needed providers.    | A message containing `Terraform has been successfully initialized!` will be printed on the screen. |
-| #2    | Run the command `terraform fmt` to ensure the terraform template file is well-formatted.     | The file name `main.tf` is written to the screen if no errors are found. |
-| #3    | Run the command `terraform validate`    | The message `"Success! The configuration is valid."`is written to the screen. |
+| #1    | Open a new tab in your browser and navigate to the AWS Console page.  Log in (if necessary) and then naviage to the Amazon S3 page | The Amazon S3 page opens                          |
+| #2 | Click the **Create bucket** button                           | The create bucket page is opened.                 |
+| #3 | For the bucket name, enter a name that should be unique.  You can append the date to the name to ensure it is unique such as: *terraform-state-20220601*.  Be sure to note the name you use since it will be needed to configure Terraform. | NA                                                |
+| #4 | Leave the remaining setting to their defaults, scroll to the bottom of the page and click the **Create bucket** button. | The bucket is created.                            |
+| #5 | In the **Search** textbox at the top of the page, enter Dyanmodb.  In the list of services that appears select **DynamoDB**. | The DynamoDB page is displayed.                   |
+| #6 | In the menu to the left click **Tables**, and when the tables page open click the **Create table** button. | The create table page is displayed.               |
+| #7 | On the create table page, enter a name for your table.  Some ideas are: *terraform_lock_table* or *terraformlocker*.  Anything should work as long as you following the rules for DynamoDB table names: *<u>Between 3 and 255 characters, containing only letters, numbers, underscores (_), hyphens (-), and periods (.).</u>* |                                                   |
+| #    | While still in the terraform_lab directory (from #3 above), run the following: `vim _backend.tf`. | The file _backend.tf is opened in the VIM editor. |
+|      |                                                              |                                                   |
 
 ---
 
@@ -88,13 +91,16 @@ Run `ls -la` to see the files you just forked.  For an explanation of the files,
 
 
 
-### 5. Plan and Apply the template
+### 5. Initialize, format, and validate, plan and Apply the template
 
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
-| #1    | Run the command `terraform plan`    | A large amount of data will be written on the screen.  Verify that a value is shown for the ami that will be created.  You should see the following at the end of the output: `Plan: 1 to add, 0 to change, 0 to destroy.` |
-| #2    | Run the command `terraform apply` to create the AWS resources. | Terraform prints out what it will deploy.|
-| #3    | Enter `yes` to the question `Do you want to perform these actions?`    | Terraform will be creating the resources and eventually write the following to the screen: `Apply complete! Resources: 1 added, 0 changed, 0 destroyed.`    |
+| #1 | Run the command `terraform init` to initialize the directory with the needed providers. | A message containing `Terraform has been successfully initialized!` will be printed on the screen. |
+| #2 | Run the command `terraform fmt` to ensure the terraform template file is well-formatted. | The file name `main.tf` is written to the screen if no errors are found. |
+| #3 | Run the command `terraform validate` | The message `"Success! The configuration is valid."`is written to the screen. |
+| #4   | Run the command `terraform plan`    | A large amount of data will be written on the screen.  Verify that a value is shown for the ami that will be created.  You should see the following at the end of the output: `Plan: 1 to add, 0 to change, 0 to destroy.` |
+| #5   | Run the command `terraform apply` to create the AWS resources. | Terraform prints out what it will deploy.|
+| #6   | Enter `yes` to the question `Do you want to perform these actions?`    | Terraform will be creating the resources and eventually write the following to the screen: `Apply complete! Resources: 1 added, 0 changed, 0 destroyed.`    |
 
 
 Now that the apply is complete, let's see if the resource was created by running the following, rather long query.  Ready?  Copy and paste the following command and run it.
