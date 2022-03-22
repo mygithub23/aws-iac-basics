@@ -92,16 +92,18 @@ You now need to configure storage of the Terraform state files into remote stora
 
 
 
-### 5. Initialize, format, and validate, plan and Apply the template
+### 5. Update, initialize, format, and validate, plan and apply the template
 
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
-| # 1 | Run the command `terraform init` to initialize the directory with the needed providers. | A message containing `Terraform has been successfully initialized!` will be printed on the screen. |
-| # 2 | Run the command `terraform fmt` to ensure the terraform template file is well-formatted. | The file name `main.tf` is written to the screen if no errors are found. |
-| # 3 | Run the command `terraform validate` | The message `"Success! The configuration is valid."`is written to the screen. |
-| # 4  | Run the command `terraform plan`    | A large amount of data will be written on the screen.  Verify that a value is shown for the ami that will be created.  You should see the following at the end of the output: `Plan: 1 to add, 0 to change, 0 to destroy.` |
-| # 5  | Run the command `terraform apply` to create the AWS resources. | Terraform prints out what it will deploy.|
-| # 6  | Enter `yes` to the question `Do you want to perform these actions?`    | Terraform will be creating the resources and eventually write the following to the screen: `Apply complete! Resources: 1 added, 0 changed, 0 destroyed.`    |
+| # | In CloudShell, run `pwd` to ensure you are in the *cloud-aws-iac/lab_files/terraform_lab/* directory. | Running `pwd` returns `cloud-aws-iac/lab_files/terraform_lab/`.  If this is not the result, repeat step 3.6 above and then run `pwd` to ensure you are in the correct directory. |
+| # | Edit the file (using nano or vim) *_backend.tf* replacing the values for **bucket** and **dynamodb_table**with the name of the bucket and table you created in section 4 above.  *(Note: If you are unfamiliar/uncomfortable with editing with nano or vim, see the section [Editing _backend.tf](#something) at the bottom of these instructions.)* | The file _backend.tf shows the names of the S3 bucket and DynamoDB table created above. |
+| # | Run the command `terraform init` to initialize the directory with the needed providers. | A message containing `Terraform has been successfully initialized!` will be printed on the screen. |
+| # | Run the command `terraform fmt` to ensure the terraform template file is well-formatted. | The file name `main.tf` is written to the screen if no errors are found. |
+| # | Run the command `terraform validate` | The message `"Success! The configuration is valid."`is written to the screen. |
+| #  | Run the command `terraform plan`    | A large amount of data will be written on the screen.  Verify that a value is shown for the ami that will be created.  You should see the following at the end of the output: `Plan: 1 to add, 0 to change, 0 to destroy.` |
+| #  | Run the command `terraform apply` to create the AWS resources. | Terraform prints out what it will deploy.|
+| #  | Enter `yes` to the question `Do you want to perform these actions?`    | Terraform will be creating the resources and eventually write the following to the screen: `Apply complete! Resources: 1 added, 0 changed, 0 destroyed.`    |
 
 
 Now that the apply is complete, let's see if the resource was created by running the following, rather long query.  Ready?  Copy and paste the following command and run it.
@@ -176,6 +178,29 @@ BUT FIRST!!!...we have a little problem.  You will not be able to write back to 
 | # | Enter your GitHub username when prompted and press enter. | You are prompted for your GitHub password. |
 | # | Paste in your GitHub personal access token you generated above and press enter. | The git command completes showing that updates have been pushed back to GitHub. |
 
+---
+
+---
+
+### Miscellaneous: Editing _backend.tf <a name="something"></a>
+
+This section will cover the step-by-step for editing the _backend.tf file using vim.  Each step is spelled out so, if you are not familiar with vim, you will begin to build the skill necessary to be confident using the editor.
+
+| Step | Instructions                                                 | Result                                                       |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| # 1  | Begin by ensuring you are in the cloud-aws-iac/lab_files/terraform_lab/ direction | NA                                                           |
+| # 2  | Open the file by typing `vim _backend.tf`                    | The state store configuration file is opened in vim.         |
+| # 3  | Using the arrow keys, move the cursor to the value for the **bucket** value.  Ensure the cursor is flashing under the first character of the value (just after the first double quote.). | The cursor is under the first letter in the default value for the bucket variable. |
+| # 4  | Hit the 'x' key to delete, character by character, the value for bucket. | The value for the bucket variable is now an empty string.  Just "". |
+| # 5  | Hit the Esc key and then the 'i' key to enter insert mode in vim. | NA                                                           |
+| # 6  | Type the value of the bucket your created.                   | The value for bucket is now the name of the bucket created above.  For example: `bucket = "mybucketname"` |
+| # 7  | Hit Esc again to enter command mode in vim.                  | NA                                                           |
+| # 8  | Move the cursor as before so you the cursor is under the first letter for the value of the **dynamodb_table** variable. | The cursor is under the first letter in the default value for the DynamoDB table variable. |
+| # 9  | Hit the 'x' key to delete, character by character, the value for DynamoDB table. | The value for the DynamoDB variable is now an empty string.  Just "". |
+| # 10 | Hit the Esc key and then the 'i' key to enter insert mode in vim. | NA                                                           |
+| # 11 | Type the value of the DynamoDB table you created.            | The value for the DynamoDB table is now the name of the table created above.  For example: `dynamodb_table == "my dynamo-table"`. |
+| # 12 | Hit the Esc key, and then `:wq` to write and quite vim.      | The file is saved and the vim editor is exited.              |
+| # 13 | Run `cat _backend.tf` and inspect the output to ensure the values you entered for the S3 bucket and DynamoDB table are accuratetly displayed in the file. | The names of of the S3 bucket and DynamoDB table created above appear in the file for the bucket and dynamodb_table variables. |
 
 TO DO: HOW TO UPDATE CLOUDSHELL WITH THE GITHUB ACCESS KEYS
 
