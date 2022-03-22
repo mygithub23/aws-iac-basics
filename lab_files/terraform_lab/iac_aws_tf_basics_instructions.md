@@ -97,7 +97,7 @@ You now need to configure storage of the Terraform state files into remote stora
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | # | In CloudShell, run `pwd` to ensure you are in the *cloud-aws-iac/lab_files/terraform_lab/* directory. | Running `pwd` returns `cloud-aws-iac/lab_files/terraform_lab/`.  If this is not the result, repeat step 3.6 above and then run `pwd` to ensure you are in the correct directory. |
-| # | Edit the file (using nano or vim) *_backend.tf* replacing the values for **bucket** and **dynamodb_table**with the name of the bucket and table you created in section 4 above.  *(Note: If you are unfamiliar/uncomfortable with editing with nano or vim, see the section [Editing _backend.tf](#something) at the bottom of these instructions.)* | The file _backend.tf shows the names of the S3 bucket and DynamoDB table created above. |
+| # | Edit the file (using nano or vim) *_backend.tf* replacing the values for **bucket** and **dynamodb_table**with the name of the bucket and table you created in section 4 above.  *(Note: If you are unfamiliar/uncomfortable with editing with nano or vim, see the section [Editing _backend.tf](#vim_backend.tf) at the bottom of these instructions.)* | The file _backend.tf shows the names of the S3 bucket and DynamoDB table created above. |
 | # | Run the command `terraform init` to initialize the directory with the needed providers. | A message containing `Terraform has been successfully initialized!` will be printed on the screen. |
 | # | Run the command `terraform fmt` to ensure the terraform template file is well-formatted. | The file name `main.tf` is written to the screen if no errors are found. |
 | # | Run the command `terraform validate` | The message `"Success! The configuration is valid."`is written to the screen. |
@@ -182,7 +182,7 @@ BUT FIRST!!!...we have a little problem.  You will not be able to write back to 
 
 ---
 
-### Miscellaneous: Editing _backend.tf <a name="something"></a>
+### Miscellaneous: Editing _backend.tf <a name="vim_backend.tf"></a>
 
 This section will cover the step-by-step for editing the _backend.tf file using vim.  Each step is spelled out so, if you are not familiar with vim, you will begin to build the skill necessary to be confident using the editor.
 
