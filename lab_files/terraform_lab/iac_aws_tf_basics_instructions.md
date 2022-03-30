@@ -32,31 +32,34 @@ Let's start building!!!
 
 
 ### 2. Set up your workstation
+
+For a walkthrough of this section, see the video **Terraform: Demo / Lab Walthrough Workstation setup**.
+
 | Step     | Instructions | Result |
 | -------- | -------- | -------- |
-| # 1      | Log in to the AWS Console using the provided student username & password | Logged into the AWS console |
+| # 1      | Log in to the AWS Management Console using the provided student username and password. | Logged into the AWS console |
 | # 2      | In the service search, type `cloudshell; in the list of services, select ***CloudShell***.  You can also click the icon for CloudShell on the ribbon bar. | The CloudShell console opens. |
 | # 3      | Click ***Close*** in the Welcome card.| NA |
 | # 4      | Ensure you are in the correct region in the top right of the AWS Console window.  You should be in `us-east-1`. | The Region selector shows *N. Virginia*. |
-| # 5      | In the console run `aws configure` pasting in the values from the lab start page for the *AWS Access Key ID*, *AWS Secret Access Key* values.  Set the *Default region name* to `us-east-1` and leave the *Default output format* value blank.  Then run the following command to check permissions: | Running `aws s3 ls` shows S3 buckets in the account (if any).  No errors for permissions. |
-| # 6   | Run the following to install yum utilities: `sudo yum install -y yum-utils` |Yum's utilities are installed|
-| # 7 | Run the following to configure the Hashicorp repository to git: `sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo` |Hashicorp's repository is available in this CloudShell session.|
-| # 8 | Run the following to install Terraform: `sudo yum -y install terraform` |Terraform is now installed in CloudShell|
-| # 9  | Verify your Terraform installation by running `terraform --version`.| The installed version of Terraform is displayed. |
-| # 10 | Run `git --version` to see if git is installed.  If it is not installed, install git by running the following command:`sudo yum install git` | Git is installed |
-| # 11 | Verify your git installation by running `git --version`. | The installed version of git is displayed. |
+| # 5  | Run the following to install yum utilities: `sudo yum install -y yum-utils` |Yum's utilities are installed|
+| # 6 | Run the following to configure the Hashicorp repository to git: `sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo` |Hashicorp's repository is available in this CloudShell session.|
+| # 7 | Run the following to install Terraform: `sudo yum -y install terraform` |Terraform is now installed in CloudShell|
+| # 8 | Verify your Terraform installation by running `terraform --version`.| The installed version of Terraform is displayed. |
+| # 9 | Run `git --version` to see if git is installed.  If it is not installed, install git by running the following command:`sudo yum install git` | Git is installed |
+| # 10 | Verify your git installation by running `git --version`. | The installed version of git is displayed. |
 
 > ***Check-In:***  You now have a workstation with the tooling needed to deploy infrastructure.      
 ---
 ---
 
-
 ### 3. Fork/Clone GitHub repo
+
+For a walkthrough of this section, see the video **Terraform: Demo / Lab Walkthrough Fork & Clone GitHub repo**.
 
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | # 1  | Log into your own GitHub account | NA |
-| # 2 | Navigate in browser to c | NA |
+| # 2 | Navigate in browser to https://github.com/Internetworkexpert/cloud-aws-iac | NA |
 | # 3 | Fork the repo into your own account by click the **Fork** button in the top left of the web page.  If you have access to multiple accounts in GitHub, a dialog box will open asking where the repo should be forked to.  Choose your own account or the account of your choice. | GitHub will redirect back to your directory with the cloud-aws-iac forked into your account. |
 | # 4 | Back in your account, you will now have a forked copy of the *cloud-aws-iac* repo.  Click the **Code** button, and in the box that opens, copy the https string for cloning the repo (either select and copy or click the copy button to the right of the https URL). | The clone URL for your copy of the repo is copied. |
 | # 5 | Back in CloudShell run `git clone <PASTE THE URL COPIED IN THE ABOVE STEP>.` | Your copy of the repo is cloned into CloudShell. |
@@ -67,11 +70,21 @@ Run `ls -la` to see the files you just forked.  For an explanation of the files,
 ---
 ---
 
+### Note: Terraform file review
 
+For a review of the Terraform files in this lab and hey they contribute to creating the target AWS infrastructure, see the video **Terraform: Demo / Lab Walkthrough Template Discussion**.
+
+
+
+---
+
+---
 
 ### 4. Configure remote state
 
-You now need to configure storage of the Terraform state files into remote storage: Amazon S3 and Amazon DynamoDB.  To do that we will modify the _backend.tf with an S3 bucket and DynamoDB table that we create in the student AWS account.
+*For a walkthrough of this section, see the video **Terraform: Demo / Lab Walkthrough Configure remote state**.*
+
+You now need to configure storage of the Terraform state files into remote storage: Amazon S3 and Amazon DynamoDB.  To do that we will modify the _backend.tf with an S3 bucket and DynamoDB table that we create.
 
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
@@ -90,9 +103,9 @@ You now need to configure storage of the Terraform state files into remote stora
 
 ---
 
-
-
 ### 5. Update, initialize, format, and validate, plan and apply the template
+
+For a walkthrough of this section, see the video **Terraform: Demo / Lab Walkthrough Update through applying & Update and apply**.
 
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
@@ -106,23 +119,16 @@ You now need to configure storage of the Terraform state files into remote stora
 | #  | Enter `yes` to the question `Do you want to perform these actions?`    | Terraform will be creating the resources and eventually write the following to the screen: `Apply complete! Resources: 1 added, 0 changed, 0 destroyed.`    |
 
 
-Now that the apply is complete, let's see if the resource was created by running the following, rather long query.  Ready?  Copy and paste the following command and run it.
-
-`aws ec2 describe-instances \
-    --filters "Name=tag:Name,Values=Finance_Front_End" \
-    --query 'Reservations[*].Instances[*].{Instance:InstanceId,AZ:Placement.AvailabilityZone,Name:Tags[?Key==`Name`]|[0].Value}' \
-    --output table`
-
-When the command completes, you should see a table with the instance you created with the name Finance_Front_End.  
+Now that the apply is complete, let's see if the resource was created.  In the AWS Management Console navigate to the Amazon EC2 service.  Listed there should be an EC2 instance that is booting up.
 
 Awesome!  You've deployed your EC2 instance to the cloud. 
 
 ---
 ---
 
-
-
 ### 6. Update and deploy
+
+For a walkthrough of this section, see the video **Terraform: Demo / Lab Walkthrough Update through applying & Update and apply**.
 
 > And another problem?!?!  After you deploy the server, the Security Department says you must update the Name tag to Finance_Mobile_Front_End.  Ugh!
 
@@ -151,6 +157,8 @@ When the table prints to the screen, scroll through the values, and you should s
 
 
 ### 7. Commit and clean up
+
+For a walkthrough of this section, see the video **Terraform: Demo / Lab Walthrough Commit changes and cleanup**
 
 You've successfully deployed an EC2 instance, made a change, and now that everyone is happy, we need to stow our updates back to GitHub and clean everything up.  
 
@@ -182,7 +190,9 @@ BUT FIRST!!!...we have a little problem.  You will not be able to write back to 
 
 ---
 
-### Bonus: Editing _backend.tf  with vim<a name="vim_backend.tf"></a>
+### Bonus: Editing _backend.tf  with vim <a name="vim_backend.tf"></a>
+
+For a walkthrough of this section, see the video **Terraform: Demo / Lab Walkthrough Bonus: Editing _backend.tf with vim**.
 
 This section will cover the step-by-step for editing the _backend.tf file using vim.  Each step is spelled out so, if you are not familiar with vim, you will begin to build the skill necessary to be confident using the editor.
 
@@ -201,8 +211,6 @@ This section will cover the step-by-step for editing the _backend.tf file using 
 | # 11 | Type the value of the DynamoDB table you created.            | The value for the DynamoDB table is now the name of the table created above.  For example: `dynamodb_table == "my dynamo-table"`. |
 | # 12 | Hit the Esc key, and then `:wq` to write and quite vim.      | The file is saved and the vim editor is exited.              |
 | # 13 | Run `cat _backend.tf` and inspect the output to ensure the values you entered for the S3 bucket and DynamoDB table are accuratetly displayed in the file. | The names of of the S3 bucket and DynamoDB table created above appear in the file for the bucket and dynamodb_table variables. |
-
-TO DO: HOW TO UPDATE CLOUDSHELL WITH THE GITHUB ACCESS KEYS
 
 
 
