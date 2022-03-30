@@ -56,7 +56,7 @@ Let's start building!!!
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
 | # 1  | Log into your own GitHub account | NA |
-| # 2 | Navigate in browser to https://github.com/Internetworkexpert/cloud-aws-iac | NA |
+| # 2 | Navigate in browser to c | NA |
 | # 3 | Fork the repo into your own account by click the **Fork** button in the top left of the web page.  If you have access to multiple accounts in GitHub, a dialog box will open asking where the repo should be forked to.  Choose your own account or the account of your choice. | GitHub will redirect back to your directory with the cloud-aws-iac forked into your account. |
 | # 4 | Back in your account, you will now have a forked copy of the *cloud-aws-iac* repo.  Click the **Code** button, and in the box that opens, copy the https string for cloning the repo (either select and copy or click the copy button to the right of the https URL). | The clone URL for your copy of the repo is copied. |
 | # 5 | Back in CloudShell run `git clone <PASTE THE URL COPIED IN THE ABOVE STEP>.` | Your copy of the repo is cloned into CloudShell. |
@@ -154,11 +154,11 @@ When the table prints to the screen, scroll through the values, and you should s
 
 You've successfully deployed an EC2 instance, made a change, and now that everyone is happy, we need to stow our updates back to GitHub and clean everything up.  
 
-BUT FIRST!!!...we have a little problem.  You will not be able to write back to your GitHub repo with a personal access token.  When you run `git push`, you will be prompted with a username and password.  The password is where you will enter the token.  The steps below include generating a token and adding to CloudShell.
+BUT FIRST!!!...we have a little problem.  You will not be able to write back to your GitHub repo without a personal access token.  When you run `git push`, you will be prompted with a username and password.  The password is where you will enter the token.  The steps below include generating a token and adding to CloudShell.
 
 | Step    | Instructions    | Result|
 | -------- | -------- | -------- |
-| # 1   | Run the command `terraform destroy`f | After a few moments, the question `Do you really want to destroy all resources?` will be written, and the prompt will be at `Enter a value:`. |
+| # 1   | Run the command `terraform destroy` | After a few moments, the question `Do you really want to destroy all resources?` will be written, and the prompt will be at `Enter a value:`. |
 | # 2   | Type yes to the prompt.    | Terraform terminates the instance.  This takes about a minute and will show the message `Destroy complete! Resources: 1 destroyed.` when completed.   |
 | # 3   | Type `git add .` (don't forget the period) and press Enter. | git adds all files for pushing back to GitHub.    |
 | # 4 | If not already logged in, log in to your GitHub account | You are logged into GitHub. |
@@ -182,7 +182,7 @@ BUT FIRST!!!...we have a little problem.  You will not be able to write back to 
 
 ---
 
-### Miscellaneous: Editing _backend.tf <a name="vim_backend.tf"></a>
+### Bonus: Editing _backend.tf  with vim<a name="vim_backend.tf"></a>
 
 This section will cover the step-by-step for editing the _backend.tf file using vim.  Each step is spelled out so, if you are not familiar with vim, you will begin to build the skill necessary to be confident using the editor.
 
