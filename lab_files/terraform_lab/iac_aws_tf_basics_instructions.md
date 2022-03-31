@@ -38,8 +38,8 @@ For a walkthrough of this section, see the video **Terraform: Demo / Lab Walthro
 | Step     | Instructions | Result |
 | -------- | -------- | -------- |
 | # 1      | Log in to the AWS Management Console using the provided student username and password. | Logged into the AWS console |
-| # 2      | In the service search, type `cloudshell; in the list of services, select ***CloudShell***.  You can also click the icon for CloudShell on the ribbon bar. | The CloudShell console opens. |
-| # 3      | Click ***Close*** in the Welcome card.| NA |
+| # 2      | In the service search, type `cloudshell` in the list of services, select ***CloudShell***.  You can also click the icon for CloudShell on the ribbon bar. | The CloudShell console opens. |
+| # 3      | Click ***Close*** in the Welcome card if it appears. | NA |
 | # 4      | Ensure you are in the correct region in the top right of the AWS Console window.  You should be in `us-east-1`. | The Region selector shows *N. Virginia*. |
 | # 5  | Run the following to install yum utilities: `sudo yum install -y yum-utils` |Yum's utilities are installed|
 | # 6 | Run the following to configure the Hashicorp repository to git: `sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo` |Hashicorp's repository is available in this CloudShell session.|
@@ -164,29 +164,36 @@ You've successfully deployed an EC2 instance, made a change, and now that everyo
 
 BUT FIRST!!!...we have a little problem.  You will not be able to write back to your GitHub repo without a personal access token.  When you run `git push`, you will be prompted with a username and password.  The password is where you will enter the token.  The steps below include generating a token and adding to CloudShell.
 
-| Step    | Instructions    | Result|
-| -------- | -------- | -------- |
-| # 1   | Run the command `terraform destroy` | After a few moments, the question `Do you really want to destroy all resources?` will be written, and the prompt will be at `Enter a value:`. |
-| # 2   | Type yes to the prompt.    | Terraform terminates the instance.  This takes about a minute and will show the message `Destroy complete! Resources: 1 destroyed.` when completed.   |
-| # 3   | Type `git add .` (don't forget the period) and press Enter. | git adds all files for pushing back to GitHub.    |
-| # 4 | If not already logged in, log in to your GitHub account | You are logged into GitHub. |
-| # 5 | On the GitHub page, click the drop-down in the top right of the page next to your avatar's picture | A drop-down menu appears. |
-| # 6 | In the drop-down select *Settings*. | The Settings page appears. |
-| # 7 | Scroll to the bottom of the menu on the left side of the page and click *Developer settings* | The Developer Settings page appears. |
-| # 8 | On the left side of the page, in the menu, select *Personal access tokens* | The Personal access tokens page appears. |
-| # 9 | Click the **Generate new token** | You may be prompted to re-enter your GitHub password.  Enter your password, click enter and the *New personal access token* page will appear. |
-| # 10 | Enter a note to describe the purpose of this personal access token.  For example, *CloudFormation token* | NA |
-| # 11 | In the expiration drop-down, set the expiration to 30 days (the default at the time of this writing). | NA |
-| # 12 | For *Select scopes* select the top-level checkbox for *repo* | All of the checkboxes in the repo section are selected. |
-| # 13 | Scroll to the bottom of the page and click the **Generate token** button. | The page with the new token appears. |
-| # 14 | Copy the token (Ctrl-C).  Leave the page open until we are sure we have correctly copied and pasted the token into CloudShell | The page should be left open. |
-|  |  |  |
-| #  | Type `git commit -m "Updates tag for Name."` Then press Enter.    | A commit message is now associated with the change.    |
-| #   | Type `git push` and then Enter.    | The updated template is written back to GitHub.    |
-| # | Enter your GitHub username when prompted and press enter. | You are prompted for your GitHub password. |
-| # | Paste in your GitHub personal access token you generated above and press enter. | The git command completes showing that updates have been pushed back to GitHub. |
+
+
+| Step | Instructions                                                 | Result                                                       |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| # 1  | Create a new branch for our changes by running `git branch updatedforfinance` in the AWS CloudShell | NA                                                           |
+| # 2  | Checkout the branch that was just created by running `git checkout updatedforfinance`. | The message `Switched to branch 'updatedforfinance'` will appear. |
+| # 3  | Add the changed files to our next commit by running `git add main.tf _backend.tf`. | NA                                                           |
+| # 4  | Now commit the changes back to your repo by running `git commmit -m "Updated for finance deployment"`.  (Note: You can create any commit message you feel is appropropriate.) | If you are running CloudShell for the first time you are prompted for user.email and user.name. |
+| # 5  | **<u>IF COMMMIT FAILS FROM STEP # 4 DUE TO EMAIL AND USERNAME:</u>** <br>Run the following two commands to set the global values for email and username: 1) `git config --global user.email <<Your Email Address Used for setup in GitHub>>` , 2) `git config --global user.name "<<Your GitHub username here>>"`. | NA                                                           |
+| # 6  | If you had to accomplish step 5 above, complete step 4 again to commit your changes back to GitHub. | NA                                                           |
+| # 7  | Run the following command substituting in the name of the branch created in step # 1 above: `git push --setup-upstream origin <<Branch Name>>` | The prompt for username and password are displayed.          |
+| # 8  | Enter your GitHub username at the prompt.                    | NA                                                           |
+| # 9  | For the password, you require a personal access token from GitHub.  Do the following:<br>1. In GitHub click your avatar/profile picture in the top right, and then select **Settings**. <br>2. In Settings, scroll to the bottom of the menu on the left and select **Developer Settings**. <br>3. On the GitHub Apps page, in the left menu at the bottom click **Personal access tokens**.<br>4. On the right click the **Generate new token** button (entering your password if necessary).<br>5. Enter a note into the **Note** field, set the expiration to 7 days, and select **repo** in the **Select scopes** selections.<br>6. Scroll to the bottom and click the **Generate** button.<br>7. Copy the token that appears on the access tokens page. | The new personal access token is copied to the local computer's clip board. |
+| # 10 | Back in CloudShell session paste the personal access token at the password prompt for your GitHub account. | The changes are pushed back to GitHub.                       |
+| #11  | Navigate to your GitHub account and click on the repo **cloud-aws-iac**. | NA                                                           |
+| # 12 | On the page for the repo, click the button near the top of the page labeled **Compare & pull request**. | The **Open a pull request** page is displayed.               |
+| # 13 | Scroll down and click the **Create pull request** button.    | THe pull request page is displayed.                          |
+| # 14 | Scroll down and select the **Merge pull request** button.    | The confirm dialog is displayed.                             |
+| # 15 | Click **Confirm merge**.                                     | The branch is merged.                                        |
+| # 16 | Click the **Delete branch** button.  Then scroll back to the top and select the **<> Code** tab. | The branch created above is deleted and you are navigated back to the repo's main page. |
+
+
+
+**THAT'S IT!!! AWESOME JOB!!!**
+
+
 
 ---
+
+ 
 
 ---
 
