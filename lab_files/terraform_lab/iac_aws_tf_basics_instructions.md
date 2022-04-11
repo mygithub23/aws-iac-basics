@@ -186,15 +186,13 @@ BUT FIRST!!!...we have a little problem.  You will not be able to write back to 
 | # 16 | Click the **Delete branch** button.  Then scroll back to the top and select the **<> Code** tab. | The branch created above is deleted and you are navigated back to the repo's main page. |
 
 
-
-**THAT'S IT!!! AWESOME JOB!!!**
-
-
-
 ---
-
+---
+### Conclusion
+**THAT'S IT!!! AWESOME JOB!!!**
+In this lab you started without any tooling, setup AWS CloudShell as a workstation, cloned & updated Terraform templates, and saved your changes back to your own GitHub repo.
  
-
+---
 ---
 
 ### Bonus: Editing _backend.tf  with vim <a name="vim_backend.tf"></a>
