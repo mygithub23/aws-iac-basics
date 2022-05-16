@@ -2,7 +2,7 @@
 
 # AWS Infrastructure as Code Basics
 
-Contains the materials for the INE AWS Engineer IAC Basics course, including lab files.
+This is the public repo that contains the materials for the INE AWS Engineer IAC Basics course, including lab files.
 
 
 
